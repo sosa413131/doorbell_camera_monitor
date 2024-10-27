@@ -9,7 +9,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const SCOPES = process.env.SCOPES;
 const PROJECT_ID = process.env.PROJECT_ID;
 const REDIRECT_URI = process.env.REDIRECT_URI;
-const PORT = process.env.PORT;;
+const PORT = process.env.PORT;
 
 app.get('/getaccesstoken', (req, res) => {
 
@@ -20,7 +20,7 @@ app.get('/getaccesstoken', (req, res) => {
 
 app.get('/oauth2callback', async (req, res) => {
     const authorizationCode = req.query.code;
-    
+
     // Step 2 -- Exchange authorization code for access and refresh tokens
     const fetchAccessToken = async () => {
         const url = 'https://oauth2.googleapis.com/token';
@@ -58,12 +58,11 @@ app.get('/oauth2callback', async (req, res) => {
     await fetchAccessToken();
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-});
-
 // LOGIC TO SEND EVENTS TO DOORBELL EVENT TO HUB
 function sendKeys(keys){
     console.log(keys);
 }
 
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
